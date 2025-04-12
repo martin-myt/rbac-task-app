@@ -16,6 +16,7 @@ A FastAPI-based backend for a Role-Based Access Control (RBAC) task management s
 - Poetry
 - PostgreSQL
 - Auth0 account
+- Docker and Docker Compose
 
 ## Setup
 
@@ -43,12 +44,21 @@ A FastAPI-based backend for a Role-Based Access Control (RBAC) task management s
 
 ## Running the Application
 
+### Using Docker (Recommended)
+
+Start the application and database:
+```bash
+docker-compose up --build
+```
+
+The API will be available at `http://localhost:8000`
+
+### Local Development
+
 Start the development server:
 ```bash
 poetry run uvicorn app.main:app --reload
 ```
-
-The API will be available at `http://localhost:8000`
 
 ## API Documentation
 
@@ -58,7 +68,16 @@ Once the server is running, you can access:
 
 ## Testing
 
-Run tests with:
+### Using Docker
+
+Run tests in the Docker container:
+```bash
+docker-compose run app poetry run pytest
+```
+
+### Local Development
+
+Run tests locally:
 ```bash
 poetry run pytest
 ```
