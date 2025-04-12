@@ -1,0 +1,43 @@
+[tool.poetry]
+name = "rbac-task-app"
+version = "0.1.0"
+description = "RBAC Task Management Application"
+authors = ["Your Name <your.email@example.com>"]
+readme = "README.md"
+packages = [{include = "app"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+fastapi = "^0.115.12"
+uvicorn = {extras = ["standard"], version = "^0.34.0"}
+sqlalchemy = "^2.0.40"
+pydantic = "^2.11.3"
+pydantic-settings = "^2.2.1"
+python-jose = {extras = ["cryptography"], version = "^3.4.0"}
+passlib = {extras = ["bcrypt"], version = "^1.7.4"}
+python-multipart = "^0.0.20"
+alembic = "^1.15.2"
+psycopg2-binary = "^2.9.10"
+email-validator = "^2.1.0"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.11.5"
+pytest = "^8.3.5"
+httpx = "^0.28.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+line-length = 88
+target-version = "py39"
+select = ["E", "F", "B", "I", "N", "UP", "PL", "RUF"]
+ignore = []
+
+[tool.ruff.isort]
+known-first-party = ["app"]
+
+[tool.ruff.per-file-ignores]
+"__init__.py" = ["F401"]
+"tests/*" = ["S101"]
