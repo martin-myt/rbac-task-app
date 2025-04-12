@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - POSTGRES_SERVER=db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=rbac_task_app
+      - AUTH0_DOMAIN=your-auth0-domain
+      - AUTH0_API_AUDIENCE=your-api-audience
+      - AUTH0_ISSUER=https://your-auth0-domain/
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+    command: >
+      sh -c "poetry run alembic upgrade head &&
+             poetry run uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload"
+
+  db:
+    image: postgres:13
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=rbac_task_app
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data: 
