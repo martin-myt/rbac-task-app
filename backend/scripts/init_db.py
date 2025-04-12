@@ -4,7 +4,6 @@ from sqlalchemy.orm import sessionmaker
 from app.core.config import settings
 from app.db.base_class import Base
 from app.models.user import User
-from app.models.task import Task
 
 
 def init_db() -> None:

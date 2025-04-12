@@ -2,9 +2,6 @@ from fastapi.testclient import TestClient
 from sqlalchemy.orm import Session
 
 from app.main import app
-from app.models.user import User
-from app.schemas.user import UserCreate
-
 
 client = TestClient(app)
 
